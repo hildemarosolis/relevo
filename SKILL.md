@@ -38,6 +38,7 @@ Antes de escribir nada, leer el estado real:
 - `git log --oneline -15` y `git status` en cada repo tocado durante la sesión.
 - Lista de archivos creados/modificados/eliminados en la sesión (la conversación es la fuente; git lo confirma).
 - Si existen `CLAUDE.md`, `BITACORA.md`, `TODO.md` o equivalentes en el cwd, revisarlos para no contradecir pendientes ya registrados.
+- **¿Ya hay un handoff de hoy?** Comprobar si existe `handoffs/handoff-YYYY-MM-DD.md` con la fecha de hoy. Si existe, LEERLO completo: el relevo nuevo no se pone al lado del anterior, lo **consolida y supersede** (ver Paso 4). El contenido todavía vigente del handoff previo se absorbe en el nuevo; lo ya resuelto durante el resto de la sesión se actualiza, no se duplica.
 
 ### Paso 2 — Reconstruir lo que git no sabe
 
@@ -105,20 +106,27 @@ Si hay condición de incumplimiento, nombrar la consecuencia.]
 
 ### Paso 4 — Guardar
 
+Regla base: **un solo handoff canónico por día.** El nombre es siempre `handoffs/handoff-YYYY-MM-DD.md` — sin sufijos `-2`, `-3` que se apilan. La carpeta activa nunca tiene más de un relevo por fecha. Esto no es un detalle de nombres: es la garantía de que la sesión siguiente nunca tiene que adivinar cuál de tres archivos manda.
+
 - Ruta por defecto: `handoffs/handoff-YYYY-MM-DD.md` en la raíz del proyecto activo (crear `handoffs/` si no existe).
 - Si el usuario tiene una carpeta central de handoffs configurada (en su CLAUDE.md o memoria), usar esa.
-- Si ya existe un handoff del mismo día, sufijar: `handoff-YYYY-MM-DD-2.md`.
+- **Si ya existe un handoff de hoy** (detectado en el Paso 1): el nuevo lo **consolida y supersede**, no se apila al lado. Procedimiento:
+  1. El handoff nuevo ya absorbió el contenido vigente del anterior (Paso 1). Lo escrito refleja el estado consolidado al cierre, no un delta suelto.
+  2. Antes de sobrescribir, **archivar la versión previa** para conservar el rastro sin ensuciar la carpeta activa: mover el archivo existente a `handoffs/archive/handoff-YYYY-MM-DD-HHMM.md` (usar la hora de modificación real del archivo o la hora actual como sello; crear `handoffs/archive/` si no existe).
+  3. Escribir el handoff consolidado en la ruta canónica `handoffs/handoff-YYYY-MM-DD.md`, sobrescribiendo.
+  4. En el encabezado del documento, bajo **Estado al cierre**, añadir una línea: `Supersede al handoff de las HH:MM de hoy (archivado en handoffs/archive/).` — para que quede explícito que esta versión absorbe a la previa.
+- El canónico **siempre** es `handoffs/handoff-YYYY-MM-DD.md`. Las copias en `handoffs/archive/` son rastro histórico, no se leen para retomar trabajo; existen solo por si hace falta auditar qué decía una versión anterior del día.
 
 ### Paso 5 — Validar y entregar el testigo
 
 En el chat, tras guardar (máximo ~200 palabras):
 
-1. Ruta del archivo guardado.
-2. Las 2-3 cosas más importantes que registra.
-3. El mensaje exacto para abrir la sesión nueva, listo para copiar:
+1. Ruta del archivo guardado — siempre el canónico `handoffs/handoff-YYYY-MM-DD.md`, nunca una copia archivada.
+2. Las 2-3 cosas más importantes que registra. Si esta versión supersedió a una previa del mismo día, decirlo en una línea ("consolida el relevo de las HH:MM, archivado").
+3. El mensaje exacto para abrir la sesión nueva, listo para copiar — apunta siempre al canónico del día:
 
 ```
-Lee [ruta absoluta del handoff] y continúa desde la sección "Plan siguiente".
+Lee [ruta absoluta del handoff canónico] y continúa desde la sección "Plan siguiente".
 ```
 
 4. Preguntar: *"¿Falta algo antes de cerrar?"* — y solo después de la confirmación dar por terminado el relevo.

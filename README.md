@@ -23,7 +23,7 @@ Cuando dices `/relevo` (o "cierra la sesión", "guarda estado", "vamos a /clear"
    6. Plan siguiente
    7. Contexto crítico para la próxima sesión (decisiones no-reabrir, setup, trampas, vocabulario)
    8. Compromisos vigentes al cierre
-4. **Guarda** en `handoffs/handoff-YYYY-MM-DD.md` y te entrega el mensaje exacto para abrir la sesión nueva, listo para copiar.
+4. **Guarda** en `handoffs/handoff-YYYY-MM-DD.md` — **un solo handoff canónico por día**. Si ya hay uno de hoy, lo consolida y supersede (absorbe lo vigente y archiva la versión previa en `handoffs/archive/`), nunca apila `-2`, `-3` al lado. Te entrega el mensaje exacto para abrir la sesión nueva, listo para copiar.
 5. **Pregunta "¿falta algo?"** antes de dar por cerrado.
 
 Además dispara **proactivamente**: si anuncias un `/clear` sin haber pedido relevo, Claude lo ofrece antes de que el contexto se queme.
@@ -90,9 +90,10 @@ Ver [`examples/`](examples/) — handoff completo de un proyecto sintético (Saa
 ## Roadmap
 
 - [x] v0.1 — versión inicial con plantilla fija de 8 secciones
-- [ ] v0.2 — detectar handoffs previos no consumidos ("hay un relevo del martes que nunca se leyó")
-- [ ] v0.3 — modo dual-sesión: relevo cruzado entre dos sesiones paralelas del mismo ecosistema
-- [ ] v0.4 — métricas de relevo: cuánto contexto sobrevive entre sesiones (compromisos cumplidos vs registrados)
+- [x] v0.2 — un solo handoff canónico por día: si ya hay uno de hoy, consolida y supersede en vez de apilar `-2`, `-3` (versión previa al `handoffs/archive/`)
+- [ ] v0.3 — detectar handoffs previos no consumidos ("hay un relevo del martes que nunca se leyó")
+- [ ] v0.4 — modo dual-sesión: relevo cruzado entre dos sesiones paralelas del mismo ecosistema
+- [ ] v0.5 — métricas de relevo: cuánto contexto sobrevive entre sesiones (compromisos cumplidos vs registrados)
 
 ## Contribuir
 
