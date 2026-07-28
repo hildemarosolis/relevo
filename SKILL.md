@@ -39,6 +39,7 @@ Antes de escribir nada, leer el estado real:
 - Lista de archivos creados/modificados/eliminados en la sesión (la conversación es la fuente; git lo confirma).
 - Si existen `CLAUDE.md`, `BITACORA.md`, `TODO.md` o equivalentes en el cwd, revisarlos para no contradecir pendientes ya registrados.
 - **¿Ya hay un handoff de hoy?** Comprobar si existe `handoffs/handoff-YYYY-MM-DD.md` con la fecha de hoy. Si existe, LEERLO completo: el relevo nuevo no se pone al lado del anterior, lo **consolida y supersede** (ver Paso 4). El contenido todavía vigente del handoff previo se absorbe en el nuevo; lo ya resuelto durante el resto de la sesión se actualiza, no se duplica.
+- **Deriva de manual/MCP (disciplina de despliegue).** ¿Algún despliegue de la sesión tocó la UI o un flujo que usa el equipo? Si sí, comprobar si se actualizaron el **manual de uso** (la ayuda navegable) y el **MCP** (las herramientas que expone el asistente). Si quedaron sin tocar, anotar la deuda explícita en "Pendiente real" — con qué despliegue la generó. Una función viva que el equipo no sabe usar es trabajo desperdiciado (le pasó a la hoja de encargo firmada: invisible durante semanas). Esta comprobación es obligatoria, no opcional.
 
 ### Paso 2 — Reconstruir lo que git no sabe
 
